@@ -1,0 +1,111 @@
+﻿@model  IEnumerable<TMS.Models.Product>
+@{
+    ViewBag.Title = "CustomerShow";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background-image: url('/Images/grey_abstract_geometric_triangle_background-wallpaper-1366x768.jpg');
+            margin: 0;
+        }
+    </style>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee List</title>
+</head>
+<body>
+    <p>
+       
+        @using (Html.BeginForm("CustomerShow", "Data", FormMethod.Get))
+        {
+
+            <b>Search By:</b>
+            @Html.RadioButton("searchBy", "ID", true)
+            <text>ID </text>
+            @Html.RadioButton("searchBy", "Type", true)
+            <text>Type </text>
+            @Html.RadioButton("searchBy", "Color")
+            <text>Color</text>
+            @Html.RadioButton("searchBy", "Price", true)
+            <text>Price </text>
+            @Html.RadioButton("searchBy", "ManufacturedBy", true)
+            <text>ManufacturedBy</text>
+            @Html.RadioButton("searchBy", "ManufacturedDate", true)
+            <text>ManufacturedDate</text>
+            <br />
+            @Html.TextBox("search")
+            <input type="submit" value="search" />
+        }
+
+    </p>
+    <table class="table" border="2">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturedDate)
+            </th>
+
+
+        </tr>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+               
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManufacturedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManufacturedDate)
+                        </td>
+                        <td>
+                           
+                       
+                            @Html.ActionLink("Details", "CDetails", new { id = item.ID } , new { id = "OT",style = "color: Red" })
+                        </td>
+                    </tr>
+
+                }
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10">
+                    No Record Found
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

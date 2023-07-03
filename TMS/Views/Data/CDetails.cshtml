@@ -1,0 +1,67 @@
+﻿@model TMS.Models.Product
+
+@{
+    ViewBag.Title = "CDetails";
+}
+
+<h2>Details</h2>
+<style type="text/css">
+    body {
+        background-image: url('/Images/sunset_futuristic-wallpaper-1366x768.jpg');
+        margin: 0;
+    }
+</style>
+
+<table>
+   
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ManufacturedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ManufacturedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ManufacturedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ManufacturedDate)
+            </dd>
+            <dd>
+                <img src="@Url.Content("~/images/"+Model.ImageURl)" />
+            </dd>
+        </dl>
+   
+    <p>
+        @Html.ActionLink("Back to List", "CustomerShow")
+    </p>
+</table>

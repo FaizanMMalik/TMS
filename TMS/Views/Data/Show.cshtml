@@ -1,0 +1,122 @@
+﻿@model  IEnumerable<TMS.Models.Product>
+@{
+    ViewBag.Title = "Show";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+        body {
+            background-image: url('/Images/cubeboy-wallpaper-1366x768.jpg');
+            margin: 0;
+        }
+    </style>
+
+    <title>Employee List</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "CrProduct")
+        @using (Html.BeginForm("Show", "Data", FormMethod.Get))
+        {
+            <b>Search By:</b>
+            @Html.RadioButton("searchBy", "ID", true)
+            <text>ID </text>
+            @Html.RadioButton("searchBy", "Type", true)
+            <text>Type </text>
+            @Html.RadioButton("searchBy", "Color")
+            <text>Color</text>
+            @Html.RadioButton("searchBy", "Price", true)
+            <text>Price </text>
+            @Html.RadioButton("searchBy", "ManufacturedBy", true)
+            <text>ManufacturedBy</text>
+            @Html.RadioButton("searchBy", "ManufacturedDate", true)
+            <text>ManufacturedDate</text>
+            <br />
+            @Html.TextBox("search")
+            <input type="submit" value="search" />
+        }
+
+    </p>
+    <table class="table" border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturedDate)
+            </th>
+
+
+        </tr>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                using (Html.BeginForm("Delete", "Data", new
+                {
+                    id = item.ID
+                }))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManufacturedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ManufacturedDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new
+                   {
+                       id =
+item.ID
+                   }) |
+                            @Html.ActionLink("Details", "Details", new
+                   {
+                       id =
+item.ID
+                   }) |
+                            <input type="submit" value="Delete" class="btn btn-danger" onclick="return
+confirm('Are you sure you want to delete this record?');" />
+                        </td>
+                    </tr>
+
+                }
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10">
+                    No Record Found
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
